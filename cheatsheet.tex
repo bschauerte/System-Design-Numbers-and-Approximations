@@ -81,7 +81,7 @@ pdfkeywords={System Design, Computer Science, Back of the Envelope}
 
 \put(10,200){ % Position on the page to put the title
 \begin{minipage}[t]{210mm} % The size and alignment of the title
-\section*{System Design Approximations} % Title
+\section*{System Design Cheatsheet - Numbers and Approximations - v1} % Title
 \end{minipage}
 }
 
@@ -126,7 +126,7 @@ Example 1: If a server has a million requests per day, it will need to handle 12
 
 Example 2: 100M photos (200KB) are uploaded daily to a server. 100 (number of millions) * 12 (the number per second for 1M) = 1200 uploads a second. 1200 (uploads) * 200KB (size of photo) = 240MB per second.
 
-\sectiontitle{Number Sizes and Conversions}
+\sectiontitle{Number Sizes}
 
 \command{\textbf{K}ilo}{Thousands (3 zeros)}
 \command{\textbf{M}ega}{Millions (6 zeros)}
@@ -164,27 +164,33 @@ Example 2: 100M photos (200KB) are uploaded daily to a server. 100 (number of mi
 %	HEADING TWO
 %----------------------------------------------------------------------------------------				
 			
-\sectiontitle{Data Sizes}
-			
-\command{char}{1 Byte (8 Bit}
-\command{char (Unicode)}{2 Byte (16 Bit}
-\command{short}{2 Byte (16 Bit)}
-\command{int or float}{4 Byte (32 Bit}
-\command{long or double}{8 Byte (64 Bit}
+\sectiontitle{Service Limitations}
 
-\sectiontitle{Approximate Object Sizes}
+These are very rough estimations on throughput, requests, and connections (Conn.) that certain services can handle.
 
-\command{File}{100 KB}
-\command{Web Page w/o a lot of magic and images}{100 KB}
-\command{Picture (jpeg, ...)}{200 KB}
-\command{Short Posted Video}{2 MB}
-\command{Streaming Video}{50 MB/s}
+% see https://matthewdbill.medium.com/back-of-envelope-calculations-cheat-sheet-d6758d276b05
+
+\begin{center}
+\begin{tabular}{ l r r r }
+-              & Storage & Conn. & Requests \\ 
+SQL DB         & 60 TB & 30 K & 25 K/sec \\  
+Cache (Redis). & 300 GB & 10 K & 100 K/sec \\
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{ l r r r }
+-              & Throughput & Requests \\ 
+Web Server     & - & 5-10 K/sec \\
+Queues/Streams & 1-100 MB/s & 1-3 K/sec % 1MB-50MB/s (Write) / 2MB-100MB/s (Read)
+\end{tabular}
+\end{center}
 					
 %----------------------------------------------------------------------------------------
 %	HEADING FIVE
 %----------------------------------------------------------------------------------------				
 					
-\sectiontitle{Througput} % Heading five
+\sectiontitle{Throughput} % Heading five
 
 \command{Read sequentially from memory}{4 GB/s}
 \command{Read sequentially from SSD}{1 GB/s}
@@ -245,27 +251,21 @@ Example 2: 100M photos (200KB) are uploaded daily to a server. 100 (number of mi
 %	IMPORTANT FILES
 %----------------------------------------------------------------------------------------
 
-\sectiontitle{Service Limitations}
+\sectiontitle{Data Sizes}
+			
+\command{char}{1 Byte (8 Bit}
+\command{char (Unicode)}{2 Byte (16 Bit}
+\command{short}{2 Byte (16 Bit)}
+\command{int or float}{4 Byte (32 Bit}
+\command{long or double}{8 Byte (64 Bit}
 
-These are very rough estimations on throughput, requests, and connections (Conn.) that certain services can handle.
+\sectiontitle{Approximate Object Sizes}
 
-% see https://matthewdbill.medium.com/back-of-envelope-calculations-cheat-sheet-d6758d276b05
-
-\begin{center}
-\begin{tabular}{ l r r r }
--              & Storage & Conn. & Requests \\ 
-SQL DB         & 60 TB & 30 K & 25 K/sec \\  
-Cache (Redis). & 300 GB & 10 K & 100 K/sec \\
-\end{tabular}
-\end{center}
-
-\begin{center}
-\begin{tabular}{ l r r r }
--              & Throughput & Requests \\ 
-Web Server     & - & 5-10 K/sec \\
-Queues/Streams & 1-100 MB/s & 1-3 K/sec % 1MB-50MB/s (Write) / 2MB-100MB/s (Read)
-\end{tabular}
-\end{center}
+\command{File}{100 KB}
+\command{Web Page w/o a lot of magic and images}{100 KB}
+\command{Picture (jpeg, ...)}{200 KB}
+\command{Short Posted Video}{2 MB}
+\command{Streaming Video}{50 MB/s}
 
 %----------------------------------------------------------------------------------------
 %	FOOTNOTE
