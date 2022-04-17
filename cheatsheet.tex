@@ -201,10 +201,13 @@ Queues/Streams & 1-100 MB/s & 1-3 K/sec % 1MB-50MB/s (Write) / 2MB-100MB/s (Read
 
 \sectiontitle{Latency} % Heading five
 
-\command{Read 1 MB sequentially from memory}{0.25 ms}
+\command{Read 1 MB sequentially from RAM}{0.25 ms}
 \command{Read 1 MB sequentially from SSD}{1 ms}
 \command{Read 1 MB sequentially from HDD}{20 ms}
 %\command{Cross continental network}{6–7 world-wide round trips per second.}
+
+\command{HDD disk seek}{10 ms}
+\command{Tape seek}{1-2 minutes}
 
 %\command{Roundtrip within datacenter}{0.5 ms (500 \(\mu\)s)}
 \command{Roundtrip within datacenter}{0.5 ms (500 us)}
@@ -269,12 +272,31 @@ Queues/Streams & 1-100 MB/s & 1-3 K/sec % 1MB-50MB/s (Write) / 2MB-100MB/s (Read
 \command{Short Posted Video}{2 MB}
 \command{Streaming Video}{50 MB/s}
 
+\sectiontitle{Costs}
+
+% source https://diskprices.com/?locale=us&condition=new&disk_types=lto3,lto4,lto5,lto6,lto7,lto8,lto9
+
+\command{RAM (hot)}{\$ 1000-4000 / TB}
+\command{SSD (warm)}{\$ 70 / TB}
+\command{HDD (cold)}{\$ 12 / TB}
+\command{Tape (glacial)}{\$ 5 / TB}
+%\command{Optical Disk (glacial)}{\$ 15 / TB} % e.g., we had fun with Everspan at BMW, https://perspectives.mvdirona.com/2016/03/everspan-optical-cold-stroage/
+
+\command{CDN Traffic (depends on features)}{\$ 5-40 / TB}
+\command{Cloud Egress}{\$ 20-100 / TB}
+
+\sectiontitle{Mobile Bandwidth and Latency}
+
+\command{5G Bandwidth}{10-30 Gb/s}
+\command{5G Latency}{1-15 ms}
+\command{4G Bandwidth}{100-300 Mb/s}
+\command{4G Latency}{50-200 ms}
+\command{3G Bandwidth}{14 Mb/s}
+
 %----------------------------------------------------------------------------------------
 %	FOOTNOTE
 %----------------------------------------------------------------------------------------
-\vspace*{19em}
-
-\vspace{\baselineskip}
+\vspace*{1em}
 \linethickness{0.5mm} % Thickness of the footer line
 {\color{mygray}\line(1,0){30}} % Print the line with a custom color
 
